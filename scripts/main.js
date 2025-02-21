@@ -85,7 +85,7 @@ window.addEventListener('scroll', () => {
 const particlesConfig = {
     particles: {
         number: {
-            value: 100,
+            value: 160,
             density: {
                 enable: true,
                 value_area: 800
@@ -98,22 +98,22 @@ const particlesConfig = {
             type: "circle"
         },
         opacity: {
-            value: 0.6,
+            value: 0.8,
             random: true,
             anim: {
                 enable: true,
                 speed: 1,
-                opacity_min: 0.1,
+                opacity_min: 0.4,
                 sync: false
             }
         },
         size: {
-            value: 4,
+            value: 5,
             random: true,
             anim: {
                 enable: true,
                 speed: 4,
-                size_min: 0.3,
+                size_min: 0.5,
                 sync: false
             }
         },
@@ -121,12 +121,12 @@ const particlesConfig = {
             enable: true,
             distance: 150,
             color: "#4a90e2",
-            opacity: 0.4,
-            width: 1
+            opacity: 0.6,
+            width: 1.5
         },
         move: {
             enable: true,
-            speed: 3,
+            speed: 2,
             direction: "none",
             random: true,
             straight: false,
@@ -154,20 +154,20 @@ const particlesConfig = {
         },
         modes: {
             grab: {
-                distance: 200,
+                distance: 250,
                 line_linked: {
                     opacity: 0.8
                 }
             },
             bubble: {
                 distance: 250,
-                size: 6,
+                size: 8,
                 duration: 2,
-                opacity: 0.8,
+                opacity: 0.9,
                 speed: 3
             },
             push: {
-                particles_nb: 4
+                particles_nb: 6
             }
         }
     },
@@ -218,4 +218,40 @@ function type() {
 // Sayfa yüklendiğinde typing efektini başlat
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(type, newTextDelay);
+});
+
+// Contact form handling
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+    };
+
+    // Form gönderildiğinde animasyon
+    const submitBtn = this.querySelector('.submit-btn');
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+    
+    // Burada form verilerini işleyebilir veya bir API'ye gönderebilirsiniz
+    // Örnek olarak console'a yazdıralım
+    console.log('Form Data:', formData);
+    
+    // Başarılı gönderim simülasyonu
+    setTimeout(() => {
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Gönderildi!';
+        submitBtn.style.background = '#4CAF50';
+        
+        // Formu resetle
+        this.reset();
+        
+        // 3 saniye sonra butonu eski haline getir
+        setTimeout(() => {
+            submitBtn.innerHTML = '<span>Gönder</span><i class="fas fa-paper-plane"></i>';
+            submitBtn.style.background = '';
+        }, 3000);
+    }, 2000);
 }); 
